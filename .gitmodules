@@ -1,0 +1,3 @@
+[submodule "brucelib"]
+	path = brucelib
+	url = https://github.com/hazeycode/brucelib
