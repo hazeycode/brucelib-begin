@@ -1,3 +1,3 @@
 [submodule "brucelib"]
 	path = brucelib
-	url = https://github.com/hazeycode/brucelib
+	url = git@github.com:hazeycode/brucelib.git
