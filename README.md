@@ -1,9 +1,7 @@
 # brucelib-begin
 A template for new projects using [brucelib](https://github.com/hazeycode/brucelib)
 
-### Get Zig
-- Get the latest [Zig release](https://ziglang.org/download/) or use [zigup](https://github.com/marler8997/zigup) if you want to switch easily between versions of Zig.
-
+Requires [Zig 0.10.x](https://github.com/ziglang/zig)
 
 ### Initilise submodules
   ```
