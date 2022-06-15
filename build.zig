@@ -12,6 +12,9 @@ pub fn build(b: *std.build.Builder) void {
     // Standard release options allow the person running `zig build` to select
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const mode = b.standardReleaseOptions();
+    
+    const ztracy_enable = b.option(bool, "ztracy-enable", "Enable Tracy profiler markers") orelse false;
+    const ztracy_options = brucelib.util.ztracy.BuildOptionsStep.init(b, .{ .enable_ztracy = ztracy_enable });
 
     const exe = b.addExecutable("new-project", "src/main.zig");
     exe.setTarget(target);
@@ -19,13 +22,14 @@ pub fn build(b: *std.build.Builder) void {
     exe.install();
 
     exe.addPackage(brucelib.platform.pkg);
-    brucelib.platform.buildAndLink(exe);
-
     exe.addPackage(brucelib.graphics.pkg);
-    brucelib.graphics.buildAndLink(exe);
-
     exe.addPackage(brucelib.audio.pkg);
-    brucelib.audio.buildAndLink(exe);
+    exe.addPackage(brucelib.algo.pkg);
+    exe.addPackage(brucelib.util.getPkg(ztracy_options));
+    
+    brucelib.platform.link(exe);    
+    brucelib.graphics.link(exe);
+    brucelib.util.link(exe, ztracy_options);
 
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());

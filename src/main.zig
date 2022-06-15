@@ -1,7 +1,15 @@
 const std = @import("std");
 
-const platform = @import("brucelib.platform");
-const graphics = @import("brucelib.graphics").usingBackendAPI(.default);
+const util = @import("brucelib.util");
+
+const platform = @import("brucelib.platform").using(.{
+    .Profiler = util.ZtracyProfiler,
+});
+
+const graphics = @import("brucelib.graphics").using(.{
+    .Profiler = util.ZtracyProfiler,
+});
+
 const audio = @import("brucelib.audio");
 
 pub fn main() anyerror!void {

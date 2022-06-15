@@ -4,18 +4,21 @@ A template for new projects using [brucelib](https://github.com/hazeycode/brucel
 Requires [Zig 0.10.x](https://github.com/ziglang/zig)
 
 ### Initilise submodules
-  ```
-  git submodule update --init
-  ```
+```
+git submodule update --init
+```
   
   
 ### Building and running
 ```
+# Compile and run tests
+zig build test
+
 # Compile and run in debug mode
 zig build run
 
-# Compile and run tests
-zig build test
+# Compile and run with in release mode with Tracy Profiler markers enabled
+zig build -Drelease-fast=true -Dztracy-enable=true run
 
 # List all build targets and options
 zig build --help
